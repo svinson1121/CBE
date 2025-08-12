@@ -1,12 +1,11 @@
 // src/api.ts
 import axios from "axios";
 
-// Base API path from .env, default to localhost:12345
-const API_HOST = import.meta.env.VITE_API_HOST || "localhost";
-const API_PORT = import.meta.env.VITE_API_PORT || "12345";
-const BASE_PATH = "/api/ecbe/v1";
+// Vite Proxy i sused to add CORS Headers..
 
-export const API_BASE = `http://${API_HOST}:${API_PORT}${BASE_PATH}`;
+
+export const API_BASE = "/api/ecbe/v1";
+
 
 const api = axios.create({
   baseURL: API_BASE,
