@@ -12,8 +12,8 @@ const ETWS_MESSAGE_IDS = [
   { id: 925, label: "925 - Secondary Notification 3" },
 ];
 
-// CBC Message ID options (selected important known IDs)
-const CBC_MESSAGE_IDS = [
+// CBS Message ID options (selected important known IDs)
+const CBS_MESSAGE_IDS = [
   { id: 0, label: "0 - Standard CBS Message (General)" },
   { id: 919, label: "919 - ETWS Earthquake Warning" },
   { id: 920, label: "920 - ETWS Tsunami Warning" },
@@ -41,8 +41,8 @@ const CHARACTER_SETS = [
   { value: "8bit", label: "8-bit" },
 ];
 
-// CBC Form Component
-function CBCForm() {
+// CBS Form Component
+function CBSForm() {
   const [form, setForm] = useState({
     message_id: "",
     serial_msg_code: 768,
@@ -88,16 +88,16 @@ function CBCForm() {
           },
         },
       });
-      alert("CBC message submitted!");
+      alert("CBS message submitted!");
     } catch (error) {
-      alert("Error submitting CBC message");
+      alert("Error submitting CBS message");
       console.error(error);
     }
   };
 
   return (
     <form onSubmit={handleSubmit} style={{ marginTop: 20 }}>
-      <h3>CBC Message</h3>
+      <h3>CBS Message</h3>
 
       <div>
         <label>Message ID:</label>
@@ -107,7 +107,7 @@ function CBCForm() {
           onChange={(e) => onChange("message_id", e.target.value)}
         >
           <option value="">-- Select Message ID --</option>
-          {CBC_MESSAGE_IDS.map(({ id, label }) => (
+          {CBS_MESSAGE_IDS.map(({ id, label }) => (
             <option key={id} value={id}>
               {label}
             </option>
@@ -201,7 +201,7 @@ function CBCForm() {
         />
       </div>
 
-      <button type="submit">Submit CBC Message</button>
+      <button type="submit">Submit CBS Message</button>
     </form>
   );
 }
@@ -226,7 +226,6 @@ function ETWSForm() {
     { value: "earthquake_and_tsunami", label: "Earthquake and Tsunami" },
     { value: "test", label: "Test" },
     { value: "other", label: "Other" },
-    { value: "rfu", label: "RFU (Reserved for Future Use)" },
   ];
 
   const onChange = (field: string, value: any) => {
@@ -408,12 +407,12 @@ export default function Main() {
         onChange={(e) => setMessageType(e.target.value)}
       >
         <option value="">-- Select --</option>
-        <option value="CBC">CBC</option>
+        <option value="CBS">CBS</option>
         <option value="ETWS">ETWS</option>
       </select>
 
       <div style={{ marginTop: 20 }}>
-        {messageType === "CBC" && <CBCForm />}
+        {messageType === "CBS" && <CBSForm />}
         {messageType === "ETWS" && <ETWSForm />}
       </div>
     </div>
