@@ -41,9 +41,17 @@ const CHARACTER_SETS = [
   { value: "8bit", label: "8-bit" },
 ];
 
+const MESSAGE_CATEGORY = [
+  { value: "normal", label: "normal" },
+  { value: "high_priority", label: "high priority"},
+  { value: "background", label: "background"},
+];
+
+
 // CBS Form Component
 function CBSForm() {
   const [form, setForm] = useState({
+    category: "normal",
     message_id: "",
     serial_msg_code: 768,
     serial_update_nr: 0,
@@ -66,8 +74,8 @@ function CBSForm() {
     }
     try {
       await createCbs({
-        cbe_name: "cbc_apitool",
-        category: "normal",
+        cbe_name: "vmwcbe-v01b",
+        category: form.category,
         repetition_period: form.repetition_period,
         num_of_bcast: form.num_of_bcast,
         scope: { scope_plmn: {} },
@@ -114,6 +122,7 @@ function CBSForm() {
           ))}
         </select>
       </div>
+
 
       <div>
         <label>Geographic Scope:</label>
@@ -200,6 +209,22 @@ function CBSForm() {
           required
         />
       </div>
+      <div>
+        <label>Category</label>
+        <select
+          required
+          value={form.category}
+          onChange={(e) => onChange("category", e.target.value)}
+        >
+          <option value="">-- Select Category --</option>
+          {MESSAGE_CATEGORY.map(({ value, label }) => (
+            <option key={value} value={value}>
+              {label}
+            </option>
+          ))}
+        </select>
+      </div>
+
 
       <button type="submit">Submit CBS Message</button>
     </form>
@@ -209,6 +234,7 @@ function CBSForm() {
 // ETWS Form Component
 function ETWSForm() {
   const [form, setForm] = useState({
+    category: "normal",
     message_id: "",
     serial_msg_code: 768,
     serial_update_nr: 0,
@@ -240,8 +266,8 @@ function ETWSForm() {
     }
     try {
       await createEtws({
-        cbe_name: "cbc_apitool",
-        category: "normal",
+        cbe_name: "vmwcbe-v01b",
+        category: form.category,
         repetition_period: form.repetition_period,
         num_of_bcast: form.num_of_bcast,
         scope: { scope_plmn: {} },
@@ -387,7 +413,21 @@ function ETWSForm() {
           required
         />
       </div>
-
+        <div>
+        <label>Category</label>
+        <select
+          required
+          value={form.category}
+          onChange={(e) => onChange("category", e.target.value)}
+        >
+          <option value="">-- Select Category --</option>
+          {MESSAGE_CATEGORY.map(({ value, label }) => (
+            <option key={value} value={value}>
+              {label}
+            </option>
+          ))}
+        </select>
+      </div>
       <button type="submit">Submit ETWS Message</button>
     </form>
   );
