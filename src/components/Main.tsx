@@ -26,6 +26,8 @@ const CBS_MESSAGE_IDS = [
   { id: 4380, label: "4380 - WEA CMAS Test | Required Monthly Test" },
   { id: 4381, label: "4381 - WEA CMAS Exercise" },
   { id: 4382, label: "4382 - WEA CMAS operator defined use" },
+  { id: 4396, label: "4396 - WEA CMAS Public Safety Alerts | EU-Alert Level 4" },
+  { id: 4398, label: "4309 - WEA CMAS State/Local WEA Test" },
 ];
 
 // Geographic scope options for both forms
@@ -257,7 +259,8 @@ function ETWSForm() {
   const WARNING_TYPES = [
     { value: "earthquake", label: "Earthquake" },
     { value: "tsunami", label: "Tsunami" },
-    { value: "earthquake_and_tsunami", label: "Earthquake and Tsunami" },
+    // Typo in spelling of  tsunami as -> "tsuname" in osmoCBC 
+    { value: "earthquake_and_tsuname", label: "Earthquake and Tsunami" },
     { value: "test", label: "Test" },
     { value: "other", label: "Other" },
   ];

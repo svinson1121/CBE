@@ -1,4 +1,11 @@
 # CBE
+
+## Notes:
+
+* I can't get any of the ETWS messages to alert on my UEs but CBS message work just fine.
+ 
+* osmoCBC lacks support for TAC targets  ( will look into fixing this at some point )
+
 ![alt text](https://github.com/svinson1121/CBE/blob/main/images/CBC-CBE.png)
 
 
