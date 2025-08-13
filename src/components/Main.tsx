@@ -14,17 +14,24 @@ const ETWS_MESSAGE_IDS = [
 
 // CBS Message ID options (selected important known IDs)
 const CBS_MESSAGE_IDS = [
-  { id: 0, label: "0 - Standard CBS Message (General)" },
-  { id: 919, label: "919 - ETWS Earthquake Warning" },
-  { id: 920, label: "920 - ETWS Tsunami Warning" },
-  { id: 921, label: "921 - ETWS Earthquake and Tsunami Warning" },
-  { id: 922, label: "922 - ETWS Test Message" },
-  { id: 4370, label: "4370 - CMAS Emergency Alert" },
-  { id: 4370, label: "4370 - CMAS Presidential Alert (US)" },
-  { id: 4371, label: "4371 - CMAS Extreme Threat" },
-  { id: 4372, label: "4372 - CMAS Severe Threat" },
-  { id: 4373, label: "4373 - CMAS Amber Alert" },
-  { id: 4374, label: "4374 - CMAS Test Message" },
+  { id: 4352, label: "4352 - ETWS Earthquake Warning" },
+  { id: 4353, label: "4353 - ETWS Tsunami Warning" },
+  { id: 4354, label: "4354 - ETWS Earthquake and Tsunami Warning" },
+  { id: 4355, label: "4355 - ETWS Test Message" },
+  { id: 4356, label: "4356 - ETWS other emergency"},
+  { id: 4370, label: "4370 - WEA CMAS Presidential Alert (US) | EU-Alert Level 1 | (KPAS) Class 0" },
+  { id: 4371, label: "4371 - WEA CMAS Extreme | EU-Alert Level 2 | (KPAS) Class 1" },
+  { id: 4372, label: "4372 - WEA CMAS Extreme | EU-Alert Level 2 | (KPAS) Class 1" },
+  { id: 4373, label: "4373 - WEA CMAS Severe | EU-Alert Level 3 | (KPAS) Class 1" },
+  { id: 4374, label: "4374 - WEA CMAS Severe | EU-Alert Level 3 | (KPAS) Class 1" },
+  { id: 4375, label: "4375 - WEA CMAS Severe | EU-Alert Level 3 | (KPAS) Class 1" },
+  { id: 4376, label: "4376 - WEA CMAS Severe | EU-Alert Level 3 | (KPAS) Class 1" },
+  { id: 4377, label: "4377 - WEA CMAS Severe | EU-Alert Level 3 | (KPAS) Class 1" },
+  { id: 4378, label: "4378 - WEA CMAS Severe | EU-Alert Level 3 | (KPAS) Class 1" },
+  { id: 4379, label: "4379 - WEA CMAS Amber | EU--Amber | (KPAS) Class 1" },
+  { id: 4380, label: "4380 - WEA CMAS Test | Required Monthly Test" },
+  { id: 4381, label: "4381 - WEA CMAS Exercise" },
+  { id: 4382, label: "4382 - WEA CMAS operator defined use" },
 ];
 
 // Geographic scope options for both forms
@@ -46,6 +53,8 @@ const MESSAGE_CATEGORY = [
   { value: "high_priority", label: "high priority"},
   { value: "background", label: "background"},
 ];
+
+
 
 
 // CBS Form Component
@@ -103,6 +112,7 @@ function CBSForm() {
     }
   };
 
+
   return (
     <form onSubmit={handleSubmit} style={{ marginTop: 20 }}>
       <h3>CBS Message</h3>
@@ -123,6 +133,7 @@ function CBSForm() {
         </select>
       </div>
 
+	<br />
 
       <div>
         <label>Geographic Scope:</label>
@@ -138,8 +149,9 @@ function CBSForm() {
         </select>
       </div>
 
+	<br />
       <div>
-        <label>Serial Message Code:</label>
+        <label>Serial Message Code (0-1023):</label>
         <input
           type="number"
           value={form.serial_msg_code}
@@ -148,10 +160,8 @@ function CBSForm() {
           onChange={(e) => onChange("serial_msg_code", Number(e.target.value))}
           required
         />
-      </div>
-
-      <div>
-        <label>Serial Update Number:</label>
+	 &nbsp; &nbsp; &nbsp;
+        <label>Serial Update Number (0-15):</label>
         <input
           type="number"
           value={form.serial_update_nr}
@@ -161,7 +171,7 @@ function CBSForm() {
           required
         />
       </div>
-
+	  <br />
       <div>
         <label>Character Set:</label>
         <select
@@ -175,17 +185,18 @@ function CBSForm() {
           ))}
         </select>
       </div>
-
+	 <br />
       <div>
         <label>Message Content:</label>
         <textarea
           rows={4}
+          cols="80" 
           value={form.payload_data_utf8}
           onChange={(e) => onChange("payload_data_utf8", e.target.value)}
           required
         />
       </div>
-
+	 <br />
       <div>
         <label>Repetition Period (1-4095):</label>
         <input
@@ -197,7 +208,7 @@ function CBSForm() {
           required
         />
       </div>
-
+	 <br />
       <div>
         <label>Number of Broadcasts (0-65535):</label>
         <input
@@ -209,6 +220,7 @@ function CBSForm() {
           required
         />
       </div>
+	 <br />
       <div>
         <label>Category</label>
         <select
@@ -225,7 +237,8 @@ function CBSForm() {
         </select>
       </div>
 
-
+      <br />
+	 <br />
       <button type="submit">Submit CBS Message</button>
     </form>
   );
@@ -315,7 +328,7 @@ function ETWSForm() {
           ))}
         </select>
       </div>
-
+	<br />
       <div>
         <label>Geographic Scope:</label>
         <select
@@ -329,9 +342,9 @@ function ETWSForm() {
           ))}
         </select>
       </div>
-
+	<br />
       <div>
-        <label>Serial Message Code:</label>
+        <label>Serial Message Code (0-1023):</label>
         <input
           type="number"
           value={form.serial_msg_code}
@@ -340,10 +353,10 @@ function ETWSForm() {
           onChange={(e) => onChange("serial_msg_code", Number(e.target.value))}
           required
         />
-      </div>
 
-      <div>
-        <label>Serial Update Number:</label>
+	 &nbsp; &nbsp; &nbsp; &nbsp;
+
+        <label>Serial Update Number (0-15):</label>
         <input
           type="number"
           value={form.serial_update_nr}
@@ -352,9 +365,9 @@ function ETWSForm() {
           onChange={(e) => onChange("serial_update_nr", Number(e.target.value))}
           required
         />
-      </div>
-
-      <div>
+	</div>
+	 <br />
+	<div>
         <label>Warning Type:</label>
         <select
           value={form.warning_type}
@@ -377,9 +390,9 @@ function ETWSForm() {
           />
           Emergency User Alert
         </label>
-      </div>
 
-      <div>
+	 &nbsp; &nbsp; &nbsp; &nbsp;	
+
         <label>
           <input
             type="checkbox"
@@ -389,7 +402,7 @@ function ETWSForm() {
           Popup on Display
         </label>
       </div>
-
+	 <br />
       <div>
         <label>Repetition Period (1-4095):</label>
         <input
@@ -401,7 +414,7 @@ function ETWSForm() {
           required
         />
       </div>
-
+	 <br />
       <div>
         <label>Number of Broadcasts (0-65535):</label>
         <input
@@ -413,6 +426,7 @@ function ETWSForm() {
           required
         />
       </div>
+	 <br />
         <div>
         <label>Category</label>
         <select
@@ -428,6 +442,8 @@ function ETWSForm() {
           ))}
         </select>
       </div>
+	 <br />
+	  <br />
       <button type="submit">Submit ETWS Message</button>
     </form>
   );
