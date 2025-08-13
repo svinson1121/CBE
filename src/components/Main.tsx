@@ -3,22 +3,16 @@ import { createCbs, createEtws } from "../api/api"; // adjust import path
 
 // ETWS Message ID options (from 3GPP TS 23.041)
 const ETWS_MESSAGE_IDS = [
-  { id: 919, label: "919 - Earthquake Warning (Primary Notification)" },
-  { id: 920, label: "920 - Tsunami Warning (Primary Notification)" },
-  { id: 921, label: "921 - Earthquake and Tsunami Warning (Primary Notification)" },
-  { id: 922, label: "922 - Test Message (Primary Notification)" },
-  { id: 923, label: "923 - Secondary Notification 1" },
-  { id: 924, label: "924 - Secondary Notification 2" },
-  { id: 925, label: "925 - Secondary Notification 3" },
-];
-
-// CBS Message ID options (selected important known IDs)
-const CBS_MESSAGE_IDS = [
   { id: 4352, label: "4352 - ETWS Earthquake Warning" },
   { id: 4353, label: "4353 - ETWS Tsunami Warning" },
   { id: 4354, label: "4354 - ETWS Earthquake and Tsunami Warning" },
   { id: 4355, label: "4355 - ETWS Test Message" },
   { id: 4356, label: "4356 - ETWS other emergency"},
+
+];
+
+// CBS Message ID options (selected important known IDs)
+const CBS_MESSAGE_IDS = [
   { id: 4370, label: "4370 - WEA CMAS Presidential Alert (US) | EU-Alert Level 1 | (KPAS) Class 0" },
   { id: 4371, label: "4371 - WEA CMAS Extreme | EU-Alert Level 2 | (KPAS) Class 1" },
   { id: 4372, label: "4372 - WEA CMAS Extreme | EU-Alert Level 2 | (KPAS) Class 1" },
@@ -118,7 +112,7 @@ function CBSForm() {
       <h3>CBS Message</h3>
 
       <div>
-        <label>Message ID:</label>
+        <label>Message ID: </label>
         <select
           required
           value={form.message_id}
@@ -131,6 +125,7 @@ function CBSForm() {
             </option>
           ))}
         </select>
+          &nbsp;(TS 123.041 V18.4.0)
       </div>
 
 	<br />
@@ -327,6 +322,7 @@ function ETWSForm() {
             </option>
           ))}
         </select>
+	 &nbsp;(TS 123.041 V18.4.0)
       </div>
 	<br />
       <div>
